@@ -1,0 +1,10 @@
+{
+    "manifest_version": 3,
+    "name": "TL-DR",
+    "version": "1.0.0",
+    "description": "T-T-T-TETO????????",
+    "action": {
+      "default_popup": "index.html"
+    },
+    "permissions": []
+  }
