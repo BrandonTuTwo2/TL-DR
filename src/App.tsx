@@ -12,7 +12,10 @@ function App() {
     setSpinner(!spinner);
     //we might need a dotenv here
     const res =  await fetch('https://tl-drt.netlify.app/.netlify/functions/hello-world',{
-      method: 'GET'
+      method: 'POST',
+      body: JSON.stringify({
+        test:"hi"
+      })
     });
 
     const filtered = await res.json();
