@@ -10,7 +10,8 @@ function App() {
     console.log("Hi ME");
     //grab url of page
     setSpinner(!spinner);
-    const res =  await fetch('/api/test',{
+    //we might need a dotenv here
+    const res =  await fetch('https://tl-drt.netlify.app/.netlify/functions/hello-world',{
       method: 'GET'
     });
 
