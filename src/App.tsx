@@ -11,7 +11,7 @@ function App() {
     //grab url of page
     setSpinner(!spinner);
     //we might need a dotenv here
-    const res =  await fetch('https://tl-drt.netlify.app/.netlify/functions/hello-world',{
+    const res =  await fetch('https://tl-drt.netlify.app/.netlify/functions/summarize',{
       method: 'POST',
       body: JSON.stringify({
         test:"hi"

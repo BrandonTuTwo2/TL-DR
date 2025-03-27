@@ -8,7 +8,7 @@ const router = Router();
 router.get("/test", async(req,res) => {
     console.log("tahts me ")
     res.send({
-        hi:"hi me to me"
+        body:"hi me to me"
     })
 })
 
