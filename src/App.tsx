@@ -13,8 +13,8 @@ function App() {
     //const tab = await chrome.tabs.query({active: true, lastFocusedWindow: true})
     const tab = "https://gamerant.com/omori-best-ending-guide/"
     //we might need a dotenv here
-    //const fetchURL = 'https://tl-drt.netlify.app/.netlify/functions/summarize'
-    const fetchURL = '.netlify/functions/summarize'
+    const fetchURL = 'https://tl-drt.netlify.app/.netlify/functions/summarize'
+    //const fetchURL = 'http://localhost:8888/.netlify/functions/summarize'
     const res =  await fetch(fetchURL,{
       method: 'POST',
       body: JSON.stringify({
