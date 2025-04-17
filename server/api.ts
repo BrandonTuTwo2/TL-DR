@@ -33,7 +33,7 @@ console.log("HUH??");
 api.post("/summarize", jsonParser, async(req,res) => {
     console.log("Here is req")
     console.log(req.body.url);
-
+    const startTime = performance.now();
     const completion = await openai.chat.completions.create({
         model: 'google/gemini-2.0-flash-exp:free',
         messages: [
@@ -48,8 +48,9 @@ api.post("/summarize", jsonParser, async(req,res) => {
           },
         ],
       });
-
+      const endTime = performance.now();
       console.log("DONE!")
+      console.log(`Call to doSomething took ${endTime - startTime} milliseconds`)
       console.log(completion)
       console.log(completion.choices[0].message.content);
     res.send({

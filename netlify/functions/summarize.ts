@@ -18,7 +18,7 @@ export const handler: Handler = async (event, context) => {
   console.log("HI MEEEEEE");
   console.log("waiting...")
   const completion = await openai.chat.completions.create({
-    model: 'deepseek/deepseek-r1:free',
+    model: 'google/gemini-2.0-flash-exp:free',
     messages: [
       {
         role: 'user',
