@@ -42,7 +42,7 @@ api.post("/summarize", jsonParser, async(req,res) => {
             content: [
               {
                 type: "text",
-                text: `summarize this article into bullet points for me using only information from this link: ${req.body.url}`
+                text: `summarize the information into bullet points for me using only information from this link: ${req.body.url}`
               }
             ],
           },

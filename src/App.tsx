@@ -19,7 +19,7 @@ function App() {
     //we might need a dotenv here
     //const fetchURL = 'https://tl-drt.netlify.app/.netlify/functions/summarize'
     //const fetchURL = 'http://localhost:8888/.netlify/functions/summarize'
-    const fetchURL = 'http://localhost:3000/summarize' //Sadly we'll have to run this locally cause im poor
+    const fetchURL = 'http://localhost:3000/summarize' //r
     const res =  await fetch(fetchURL,{
       method: 'POST',
       headers: header,
@@ -29,10 +29,18 @@ function App() {
     });
 
     const filtered = await res.json();
+    const points = filtered.body.split("*   ")
+
+    points.forEach((element: string,index: number) => {
+      // eslint-disable-next-line no-useless-escape
+      points[index] = element.replace(/[\*\n"]/g, '%');
+    });
+    
     setSpinner(!spinner);
     setSumDisplay(!sumDisplay);
     console.log("HI ME");
     console.log(filtered);
+    console.log(points);
   }
 
   console.log("HI");
