@@ -18,27 +18,26 @@ export const handler: Handler = async (event, context) => {
   console.log("HI MEEEEEE");
   console.log("waiting...")
   const completion = await openai.chat.completions.create({
-    model: 'google/gemini-2.0-flash-exp:free',
+    model: 'meta-llama/llama-4-maverick:free', //meta-llama/llama-4-maverick:free
     messages: [
       {
         role: 'user',
         content: [
           {
             type: "text",
-            text: `summarize this article into bullet points for me using only information from this link: ${test.url}`
+            text: `summarize the information on the link into bullet points using only information from this link and no other external source: ${req.body.url}`
           }
         ],
       },
     ],
   });
+
   console.log("DONE!")
   console.log(completion)
   console.log(completion.choices[0].message);
 
   return {
     statusCode: 200,
-    body: JSON.stringify({
-      message: completion.choices[0].message,
-    }),
+    body: completion.choices[0].message.content
   }
 }

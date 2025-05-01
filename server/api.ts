@@ -35,14 +35,14 @@ api.post("/summarize", jsonParser, async(req,res) => {
     console.log(req.body.url);
     const startTime = performance.now();
     const completion = await openai.chat.completions.create({
-        model: 'google/gemini-2.0-flash-exp:free',
+        model: 'meta-llama/llama-4-maverick:free', //meta-llama/llama-4-maverick:free
         messages: [
           {
             role: 'user',
             content: [
               {
                 type: "text",
-                text: `summarize the information into bullet points for me using only information from this link: ${req.body.url}`
+                text: `summarize the information on the link into bullet points using only information from this link and no other external source: ${req.body.url}`
               }
             ],
           },
@@ -50,7 +50,7 @@ api.post("/summarize", jsonParser, async(req,res) => {
       });
       const endTime = performance.now();
       console.log("DONE!")
-      console.log(`Call to doSomething took ${endTime - startTime} milliseconds`)
+      console.log(`Call to do Something took ${endTime - startTime} milliseconds`)
       console.log(completion)
       console.log(completion.choices[0].message.content);
     res.send({

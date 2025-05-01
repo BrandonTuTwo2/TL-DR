@@ -4,13 +4,13 @@ import './App.css'
 function App() {
   const [spinner, setSpinner] = useState(false);
   const [sumDisplay, setSumDisplay] = useState(false);
-  const exOutput = ["test1", "test2", "test3"]
+  const [bulletPoints, setPoints] = useState([])
 
   const fetchSummary = async () => {
     console.log("Hi ME");
     const header = new Headers(); // I love cors
-    header.append('access-control-allow-credentials','true');
-    header.append('Content-Type','application/json; charset=utf-8')
+    header.append('access-control-allow-credentials', 'true');
+    header.append('Content-Type', 'application/json; charset=utf-8')
 
     //grab url of page
     setSpinner(!spinner);
@@ -20,22 +20,20 @@ function App() {
     //const fetchURL = 'https://tl-drt.netlify.app/.netlify/functions/summarize'
     //const fetchURL = 'http://localhost:8888/.netlify/functions/summarize'
     const fetchURL = 'http://localhost:3000/summarize' //r
-    const res =  await fetch(fetchURL,{
+    const res = await fetch(fetchURL, {
       method: 'POST',
       headers: header,
       body: JSON.stringify({
-        url:tab
+        url: tab
       })
     });
 
     const filtered = await res.json();
-    const points = filtered.body.split("*   ")
+    let points = filtered.body.split("*")
 
-    points.forEach((element: string,index: number) => {
-      // eslint-disable-next-line no-useless-escape
-      points[index] = element.replace(/[\*\n"]/g, '%');
-    });
-    
+    // eslint-disable-next-line no-useless-escape
+    points = points.map((point: string) => point.replace(/[\t\n+]/g, '').trim());
+    setPoints(points)
     setSpinner(!spinner);
     setSumDisplay(!sumDisplay);
     console.log("HI ME");
@@ -53,7 +51,7 @@ function App() {
         </button>
         {
           sumDisplay && (<ul>
-            {exOutput.map(output => (
+            {bulletPoints.map((output: string) => (
               <li>{output}</li>
             ))}
           </ul>)
