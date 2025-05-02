@@ -14,17 +14,21 @@ function App() {
 
     //grab url of page
     setSpinner(!spinner);
-    //const tab = await chrome.tabs.query({active: true, lastFocusedWindow: true})
-    const tab = "https://gamerant.com/omori-best-ending-guide/"
+    const tab = await chrome.tabs.query({active: true, currentWindow: true})
+    //const tab = "https://gamerant.com/omori-best-ending-guide/"
     //we might need a dotenv here
     //const fetchURL = 'https://tl-drt.netlify.app/.netlify/functions/summarize'
     //const fetchURL = 'http://localhost:8888/.netlify/functions/summarize'
+
+    //console.log("here is tab test");
+    //console.log(tabTest[0].url);
+
     const fetchURL = 'http://localhost:3000/summarize' //r
     const res = await fetch(fetchURL, {
       method: 'POST',
       headers: header,
       body: JSON.stringify({
-        url: tab
+        url: tab[0].url
       })
     });
 
