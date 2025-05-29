@@ -23,7 +23,7 @@ function App() {
     //console.log("here is tab test");
     //console.log(tabTest[0].url);
 
-    const fetchURL = 'http://localhost:3000/summarize' //r
+    const fetchURL = 'https://tl-drt.netlify.app/.netlify/functions/summarize' //r
     const res = await fetch(fetchURL, {
       method: 'POST',
       headers: header,
