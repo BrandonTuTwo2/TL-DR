@@ -52,7 +52,7 @@ api.post("/summarize", jsonParser, async(req,res) => {
       console.log("DONE!")
       console.log(`Call to do Something took ${endTime - startTime} milliseconds`)
       console.log(completion)
-      console.log(completion.choices);
+      console.log(completion.choices[0]);
     res.send({
         body: completion.choices[0].message.content
     })

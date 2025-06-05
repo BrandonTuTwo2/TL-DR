@@ -13,10 +13,9 @@ const openai = new OpenAI({
 export const handler: Handler = async (event) => {
   if (event.body) {
     const jsonBody = JSON.parse(event.body);
-    console.log("HI MEEEEEE");
     console.log("waiting...");
     const completion = await openai.chat.completions.create({
-      model: "meta-llama/llama-4-maverick:free:online", //meta-llama/llama-4-maverick:free
+      model: "meta-llama/llama-4-maverick:free:online", //meta-llama/llama-4-maverick:free being poor sucks :(
       messages: [
         {
           role: "user",
